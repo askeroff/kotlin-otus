@@ -1,21 +1,14 @@
 plugins {
-    kotlin("jvm") version "2.0.10"
+    kotlin("jvm") apply false
 }
 
 group = "askerovlab.kotlin.otus"
-version = "1.0-SNAPSHOT"
+version = "0.0.1"
 
-repositories {
-    mavenCentral()
-}
-
-dependencies {
-    testImplementation(kotlin("test"))
-}
-
-tasks.test {
-    useJUnitPlatform()
-}
-kotlin {
-    jvmToolchain(21)
+subprojects {
+    repositories {
+        mavenCentral()
+    }
+    group = rootProject.group
+    version = rootProject.version
 }
