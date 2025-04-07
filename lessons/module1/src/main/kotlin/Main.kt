@@ -2,5 +2,6 @@ package askerovlab.kotlin.otus
 
 
 fun main() {
-   println("Hello, world!")
+    println("Hello!")
+
 }
