@@ -1,4 +1,4 @@
-package askerovlab.kotlin.plugin
+package askerovlab.kotlin.practicetracker.plugin
 
 import org.gradle.api.Plugin
 import org.gradle.api.Project

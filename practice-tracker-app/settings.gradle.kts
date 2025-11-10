@@ -1,4 +1,4 @@
-rootProject.name = "practice-tracker"
+rootProject.name = "practice-tracker-app"
 
 dependencyResolutionManagement {
     versionCatalogs {
@@ -28,4 +28,5 @@ plugins {
 //implementation(projects.m2l5Gradle.sub1.ssub1)
 enableFeaturePreview("TYPESAFE_PROJECT_ACCESSORS")
 
-include("backend")
+//include("backend")
+include("api-mkp")
