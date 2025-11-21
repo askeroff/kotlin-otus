@@ -1,0 +1,119 @@
+openapi: 3.0.3
+info:
+  title: "Practice tracker ${VERSION_APP}"
+  description: This is the app for you to stay focused
+  license:
+    name: Apache 2.0
+    url: https://www.apache.org/licenses/LICENSE-2.0.html
+  version: 1.0.0
+servers:
+  - url: http://localhost:8080/v1
+tags:
+  - name: practice
+    description: Stay focused, kid
+paths:
+  /practice/create:
+    post:
+      tags:
+        - practice
+      summary: Create practice session
+      operationId: practiceCreate
+      requestBody:
+        description: Request body
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/PracticeCreateRequest'
+        required: true
+      responses:
+        200:
+          description: Success
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PracticeCreateResponse'
+components:
+  schemas:
+    IRequest:
+      type: object
+      description: Base Interface for all requests
+      properties:
+        requestType:
+          type: string
+          description: Specifies the request type
+          example: create
+      discriminator:
+        propertyName: requestType
+        mapping:
+          create: '#/components/schemas/PracticeCreateRequest'
+    Error:
+      type: object
+      properties:
+        code:
+          type: string
+        group:
+          type: string
+        field:
+          type: string
+        message:
+          type: string
+
+    ResponseResult:
+      type: string
+      enum:
+        - success
+        - error
+
+    IResponse:
+      type: object
+      description: Базовый интерфейс для всех ответов
+      properties:
+        responseType:
+          type: string
+          description: Поле-дескриминатор для вычисления типа запроса
+          example: create
+        result:
+          $ref: '#/components/schemas/ResponseResult'
+        errors:
+          type: array
+          items:
+            $ref: '#/components/schemas/Error'
+      discriminator:
+        propertyName: responseType
+        mapping:
+          create: '#/components/schemas/PracticeCreateResponse'
+
+
+    PracticeObject:
+      type: object
+      properties:
+        id:
+          type: integer
+          format: int64
+          example: 10
+        duration:
+          type: integer
+          format: int64
+          example: 60
+        start_time:
+          type: string
+          format: date-time
+        end_time:
+          type: string
+          format: date-time
+
+    PracticeCreateRequest:
+      type: object
+      allOf:
+        - $ref: '#/components/schemas/IRequest'
+        - type: object
+          properties:
+            practice:
+              $ref: '#/components/schemas/PracticeObject'
+    PracticeCreateResponse:
+      allOf:
+        - $ref: '#/components/schemas/IResponse'
+        - type: object
+          properties:
+            practice:
+              $ref: '#/components/schemas/PracticeObject'

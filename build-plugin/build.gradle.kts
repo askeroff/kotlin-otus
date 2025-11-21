@@ -6,11 +6,11 @@ gradlePlugin {
     plugins {
         register("build-jvm") {
             id = "build-jvm"
-            implementationClass = "askerovlab.kotlin.plugin.BuildPluginJvm"
+            implementationClass = "askerovlab.kotlin.practicetracker.plugin.BuildPluginJvm"
         }
         register("build-kmp") {
             id = "build-kmp"
-            implementationClass = "askerovlab.kotlin.plugin.BuildPluginMultiplatform"
+            implementationClass = "askerovlab.kotlin.practicetracker.plugin.BuildPluginMultiplatform"
         }
     }
 }
